@@ -34,6 +34,10 @@ class ApiController extends Controller
 
 		$key = array_search($args['id'], array_column($albums, 'id'));
 
+		if($key === false){
+			throw new HttpNotFoundException($request, $response);
+		}
+
 		return $response->withJson($albums[$key]);
 	}
 
